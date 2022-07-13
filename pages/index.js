@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>
+        <h1 className="text-gray-900">
           Under Construction
         </h1>
       </main>
