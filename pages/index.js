@@ -1,4 +1,4 @@
-import Head from "next/head"
+import Head from "next/head";
 
 export default function Home() {
   return (
@@ -13,6 +13,7 @@ export default function Home() {
         <h1 className="text-gray-900">
           Under Construction
         </h1>
+
       </main>
     </>
   );
