@@ -1,4 +1,4 @@
-import "../styles/base.css"
+import "./base.css"
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
