@@ -1,5 +1,6 @@
 # private files
 private
+.idea
 
 # dependencies
 /node_modules
