@@ -4,6 +4,5 @@ export const Base = () => <ItemCard/>;
 
 export default {
 	title: "Parts/Item Card",
-	component: ItemCard,
-	layout: "center"
+	component: ItemCard
 };
