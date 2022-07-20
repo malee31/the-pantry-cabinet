@@ -3,7 +3,7 @@ import ItemCounter from "./ItemCounter";
 
 export default function ItemCard() {
 	return (
-		<div className="flex flex-col mx-5 p-2 border-4 rounded-lg border-neutral-100 transition-[border-color] duration-200 hover:border-neutral-200 w-60 aspect-[5/6] overflow-hidden">
+		<div className="flex flex-col mx-4 my-2 p-2 border-4 rounded-lg border-neutral-100 transition-[border-color] duration-200 hover:border-neutral-200 h-72 aspect-[5/6] overflow-hidden">
 			<div className="-mx-2 -mt-2 w-100">
 				<img
 					className="w-100 aspect-[4/3] object-cover"
