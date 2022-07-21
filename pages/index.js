@@ -1,20 +1,22 @@
 import Head from "next/head";
+import Navbar from "../components/parts/Navbar";
+import Sidebar from "../components/sections/Sidebar";
+import ItemGrid from "../components/units/ItemGrid";
 
 export default function Home() {
-  return (
-    <>
-      <Head>
-        <title>The Pantry Cabinet</title>
-        <meta name="description" content="A Pantry Inventory Site Built With NextJS and Tailwind" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+	return (
+		<>
+			<Head>
+				<title>The Pantry Cabinet</title>
+				<meta name="description" content="A Pantry Inventory Site Built With NextJS and Tailwind"/>
+				<link rel="icon" href="/favicon.ico"/>
+			</Head>
 
-      <main>
-        <h1 className="text-gray-900">
-          Under Construction
-        </h1>
-
-      </main>
-    </>
-  );
+			<main className="w-screen h-screen grid" style={{ gridTemplateColumns: "min-content 1fr" }}>
+				<Navbar className="col-span-2"/>
+				<Sidebar/>
+				<ItemGrid/>
+			</main>
+		</>
+	);
 }
