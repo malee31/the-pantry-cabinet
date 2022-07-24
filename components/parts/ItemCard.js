@@ -24,7 +24,7 @@ export default function ItemCard(props) {
 					className="absolute w-full h-full"
 				>
 					<Image
-						className="w-100 aspect-[4/3] object-cover object-center"
+						className="w-full aspect-[4/3] object-cover object-center"
 						src={imageSrc}
 						alt={label}
 						layout="fill"

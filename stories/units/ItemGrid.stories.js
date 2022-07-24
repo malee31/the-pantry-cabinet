@@ -20,5 +20,10 @@ export const Empty = Template.bind({});
 
 export default {
 	title: "Units/Item Grid",
-	component: ItemGrid
+	component: ItemGrid,
+	argTypes: {
+		noItemsLabel: {
+			control: "text"
+		}
+	}
 };
