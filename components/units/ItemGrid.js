@@ -1,14 +1,21 @@
-import ItemCard from "../parts/ItemCard";
+export default function ItemGrid({ children }) {
+	console.log(children)
+	if(!children) {
+		return (
+			<div
+				className="w-full border border-gray-400 px-2 w-full flex items-center justify-center overflow-auto"
+			>
+				No Items Available
+			</div>
+		)
+	}
 
-export default function ItemGrid() {
 	return (
 		<div
-			className="border border-gray-400 px-2 w-full grid auto-cols-min justify-items-center overflow-auto"
-			style={{ gridTemplateColumns: "repeat(auto-fit, minmax(15.25rem, 1fr))" }}
+			className="w-full border border-gray-400 px-2 w-full grid auto-cols-min items-center justify-items-center overflow-auto"
+			style={{ gridTemplate: "min-content/repeat(auto-fit, minmax(15.25rem, 1fr))" }}
 		>
-			{Array(50).fill(0).map((item, index) => (
-				<ItemCard key={index}/>
-			))}
+			{children}
 		</div>
 	);
 }

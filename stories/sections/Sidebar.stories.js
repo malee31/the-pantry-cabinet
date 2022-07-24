@@ -1,6 +1,6 @@
 import Sidebar from "../../components/sections/Sidebar";
 
-export const Base = () => <Sidebar/>;
+export const Default = () => <Sidebar/>;
 
 export default {
 	title: "Sections/Side Bar",

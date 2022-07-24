@@ -1,6 +1,6 @@
 import Navbar from "../../components/parts/Navbar";
 
-export const Base = () => <Navbar/>;
+export const Default = () => <Navbar/>;
 
 export default {
 	title: "Parts/Nav Bar",
