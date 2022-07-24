@@ -1,29 +1,35 @@
 import { useState } from "react";
+import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
 
+/**
+ * The counter for the number of an item there is with controls to add or subtract
+ * @param {number} [defaultAmount = 0]
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export default function ItemCounter({ defaultAmount = 0 }) {
 	const [count, setCount] = useState(defaultAmount);
 
 	return (
-		<div className="w-fit flex flex-row text-center h-8 bg-gray-200 border-2 border-gray-200 rounded-full">
-			<div
-				className="aspect-square shrink-0 cursor-pointer select-none rounded-full border border-neutral-200 bg-blue-400"
+		<div
+			style={{ height: "1.2em" }}
+			className=" inline-flex row items-center text-center rounded-full"
+		>
+			<MinusSmIcon
+				className="h-full flex-grow-0 aspect-square shrink-0 rounded-md bg-blue-400 cursor-pointer select-none"
 				role="button"
 				onClick={() => setCount(Math.max(0, count - 1))}
-			>
-				-
-			</div>
+			/>
 			<input
-				className="mx-1 px-1 w-9 text-center"
+				className="w-9 h-full px-1 flex-grow-0 text-center"
 				value={count}
 				onChange={e => setCount(Number(e.currentTarget.value)) || count}
 			/>
-			<div
-				className="aspect-square shrink-0 cursor-pointer select-none rounded-full border border-neutral-200 bg-blue-400"
+			<PlusSmIcon
+				className="h-[95%] flex-grow-0 aspect-square shrink-0 rounded-md bg-blue-400 cursor-pointer select-none"
 				role="button"
-				onClick={() => setCount(count + 1)}
-			>
-				+
-			</div>
+				onClick={() => setCount(Math.max(0, count + 1))}
+			/>
 		</div>
 	);
 }

@@ -12,7 +12,7 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico"/>
 			</Head>
 
-			<main className="w-screen h-screen grid" style={{ gridTemplateColumns: "min-content 1fr" }}>
+			<main className="w-screen h-screen grid" style={{ gridTemplate: "min-content/min-content 1fr" }}>
 				<Navbar className="col-span-2"/>
 				<Sidebar/>
 				<ItemGrid/>
