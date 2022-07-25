@@ -1,5 +1,5 @@
 import ItemCard from "../../components/parts/ItemCard";
-import cakeImage from "../../public/images/cake.jpg";
+import cakeImage from "../../public/static/images/cake.jpg";
 
 const Template = (args) => <ItemCard {...args}/>;
 export const Default = Template.bind({});
@@ -18,7 +18,7 @@ export default {
 	title: "Parts/Item Card",
 	component: ItemCard,
 	argTypes: {
-		imgSrc: {
+		imageSrc: {
 			control: "text",
 			defaultValue: cakeImage,
 			required: true

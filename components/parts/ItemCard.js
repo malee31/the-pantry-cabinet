@@ -1,11 +1,10 @@
-import cakeImage from "../../public/images/cake.jpg";
 import ItemCounter from "./ItemCounter";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function ItemCard(props) {
 	const {
-		imageSrc = cakeImage,
+		imageSrc = "/static/images/cake.jpg",
 		label = "Cake",
 		caption = "A very tasty cake left in the freezer for way too long. Definitely severely freezer burned... But it should still be tasty... right?",
 		defaultAmount = 0,

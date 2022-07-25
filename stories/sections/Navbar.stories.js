@@ -1,4 +1,4 @@
-import Navbar from "../../components/parts/Navbar";
+import Navbar from "../../components/sections/Navbar";
 
 export const Default = () => <Navbar/>;
 
