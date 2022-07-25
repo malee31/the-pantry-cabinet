@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook --no-open -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o build/storybook"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
