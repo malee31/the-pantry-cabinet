@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "build-storybook -o public/storybook && next build",
-    "build-next": "next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "storybook": "start-storybook --no-open -p 6006",
-    "build-storybook": "build-storybook -o public/storybook"
+    "build-storybook": "build-storybook -o public/storybook",
+    "build-all": "build-storybook -o public/storybook && next build"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
