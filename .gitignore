@@ -16,6 +16,7 @@ private
 
 # production
 /build
+/public/storybook
 
 # misc
 .DS_Store
