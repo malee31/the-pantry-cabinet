@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Setup Actions
         uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -18,16 +19,23 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Storybook
-        run: npm run build-storybook
-      - name: Build Next App
-        run: npm run build
+      - name: Vercel Pull
+        run: npx vercel pull --yes --token=${VERCEL_TOKEN}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
 
-      - name: Deploy to Vercel
+      - name: Vercel Build
+        run: npx vercel build --prod
+        env:
+          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
+
+      - name: Deploy to Vercel (Override Build with Nothing on Vercel Site)
         uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
-          vercel-args: "--prod"
-          working-directory: ./build
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-args: "--prod --prebuilt"
