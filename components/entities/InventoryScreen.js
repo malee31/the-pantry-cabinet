@@ -7,6 +7,7 @@ import { useState } from "react";
 import ListModeControls from "../parts/ListModeControls";
 
 export default function InventoryScreen() {
+	const [displayMode, setDisplayMode] = useState("grid");
 	const [showSampleItems, setShowSampleItems] = useState(false);
 
 	return (
@@ -21,7 +22,12 @@ export default function InventoryScreen() {
 				<Navbar className="col-span-2"/>
 				<Sidebar/>
 				<div className="w-full h-full relative">
-					<ListModeControls className="absolute top-0 right-0"/>
+					<ListModeControls
+						className="absolute top-0 right-0"
+						mode={displayMode}
+						onGrid={() => setDisplayMode("grid")}
+						onList={() => setDisplayMode("list")}
+					/>
 					{
 						showSampleItems ? (
 							<ItemGrid style={{ paddingTop: "1.5em" }}>
