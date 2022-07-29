@@ -12,7 +12,7 @@ export default function ListModeControls(props) {
 
 	return (
 		<div
-			className={classNameMerge("px-2 py-1 flex items-center justify-end", className)}
+			className={classNameMerge("px-2 py-1 flex items-center justify-end z-index-10", className)}
 			{...additionalProps}
 		>
 			<span className="whitespace-nowrap text-gray-500">View Mode: </span>

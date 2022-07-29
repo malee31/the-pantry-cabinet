@@ -1,8 +1,8 @@
-import ItemGrid from "../../components/units/ItemGrid";
+import ItemList from "../../components/units/ItemList";
 
 const Template = (args) => (
 	<div style={{ width: "90vw", height: "90vh", display: "grid" }}>
-		<ItemGrid {...args}/>
+		<ItemList {...args}/>
 	</div>
 );
 
@@ -16,8 +16,8 @@ Default.args = {
 export const Empty = Template.bind({});
 
 export default {
-	title: "Units/Item Grid",
-	component: ItemGrid,
+	title: "Units/Item List",
+	component: ItemList,
 	argTypes: {
 		items: { control: "object" }
 	}
