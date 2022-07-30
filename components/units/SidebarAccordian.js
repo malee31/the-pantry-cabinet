@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/solid";
 
 
-export default function SidebarAccordian({label, Icon, children}) {
+export default function SidebarAccordian({ label, Icon, children }) {
 	const [collapsed, setCollapsed] = useState(false);
 	const DirectionIcon = collapsed ? ChevronRightIcon : ChevronDownIcon;
 

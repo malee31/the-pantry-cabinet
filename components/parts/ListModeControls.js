@@ -1,4 +1,4 @@
-import { ViewListIcon, ViewGridIcon } from "@heroicons/react/solid";
+import { ViewGridIcon, ViewListIcon } from "@heroicons/react/solid";
 import { classNameMerge } from "../../utils";
 
 export default function ListModeControls(props) {

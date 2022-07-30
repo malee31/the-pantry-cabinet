@@ -17,9 +17,8 @@ export default function ItemDisplay() {
 	const isEmpty = !Array.isArray(items) || items.length === 0;
 
 	return (
-		<div className="w-full h-full min-h-0 relative">
+		<div className="w-full h-full min-h-0 flex flex-col relative">
 			<ListModeControls
-				className="absolute top-0 right-0"
 				mode={displayMode}
 				onGridMode={() => setDisplayMode("grid")}
 				onListMode={() => setDisplayMode("list")}
@@ -31,10 +30,7 @@ export default function ItemDisplay() {
 						onClick={() => setShowSampleItems(true)}
 					/>
 				) : (
-					<Display
-						style={{ paddingTop: "2em" }}
-						items={items}
-					/>
+					<Display items={items}/>
 				)
 			}
 		</div>

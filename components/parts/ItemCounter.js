@@ -20,21 +20,21 @@ export default function ItemCounter(props) {
 	return (
 		<div
 			style={Object.assign({ height: "1.2em" }, style)}
-			className={classNameMerge("inline-flex row items-center text-center rounded-full", className)}
+			className={classNameMerge("inline-flex row items-center text-center", className)}
 			{...args}
 		>
 			<MinusSmIcon
-				className="h-full flex-grow-0 aspect-square shrink-0 rounded-md bg-blue-400 cursor-pointer select-none"
+				className="h-full flex-grow-0 aspect-square shrink-0 rounded-full bg-blue-400 cursor-pointer select-none"
 				role="button"
 				onClick={() => setCount(Math.max(0, count - 1))}
 			/>
 			<input
 				className="w-9 h-full px-1 flex-grow-0 text-center"
 				value={count}
-				onChange={e => setCount(Number(e.currentTarget.value)) || count}
+				onChange={e => setCount(Number(e.currentTarget.value) || count)}
 			/>
 			<PlusSmIcon
-				className="h-[95%] flex-grow-0 aspect-square shrink-0 rounded-md bg-blue-400 cursor-pointer select-none"
+				className="h-full flex-grow-0 aspect-square shrink-0 rounded-full bg-blue-400 cursor-pointer select-none"
 				role="button"
 				onClick={() => setCount(Math.max(0, count + 1))}
 			/>

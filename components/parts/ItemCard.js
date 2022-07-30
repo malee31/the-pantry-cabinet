@@ -15,7 +15,7 @@ export default function ItemCard(props) {
 	return (
 		<div
 			{...args}
-			className="group flex flex-col mx-4 my-2 border-4 rounded-lg border-neutral-100 transition-[border-color] duration-200 hover:border-neutral-200 h-72 aspect-[5/6] overflow-hidden"
+			className="group flex flex-col border-4 rounded-lg border-neutral-100 transition-[border-color] duration-200 hover:border-neutral-200 h-72 aspect-[5/6] overflow-hidden"
 		>
 			<div className="relative flex-shrink-0 group-hover:flex-shrink transition-[flex-shrink] box-content w-full aspect-[4/3] bg-black">
 				<div

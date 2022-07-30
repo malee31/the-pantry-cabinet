@@ -2,7 +2,7 @@ import ItemListItem from "../../components/parts/ItemListItem";
 import cakeImage from "../../public/static/images/cake.jpg";
 
 const Template = (args) => (
-	<div style={{ width: "90vw", height: "90vh", display: "flex", flexDirection: "column"}}>
+	<div style={{ width: "90vw", height: "90vh", display: "flex", flexDirection: "column" }}>
 		<ItemListItem {...args}/>
 	</div>
 );
