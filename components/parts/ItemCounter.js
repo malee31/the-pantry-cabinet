@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
 import { classNameMerge } from "../../utils";
-import { Nu } from "../../public/storybook/947.d1b00fb4.iframe.bundle";
 
 /**
  * The counter for the number of an item there is with controls to add or subtract
