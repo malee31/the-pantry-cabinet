@@ -1,6 +1,9 @@
 const path = require("path");
 
 module.exports = {
+	staticDirs: [
+		path.resolve(__dirname, "../public")
+	],
 	stories: [
 		"../stories/**/*.stories.mdx",
 		"../stories/**/*.stories.@(js|jsx|ts|tsx)"

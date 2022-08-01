@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "storybook": "start-storybook --no-open -p 6006 -s public",
+    "storybook": "start-storybook --no-open -p 6006",
     "build-storybook": "build-storybook -o public/storybook",
     "build-all": "build-storybook -o public/storybook && next build"
   },
