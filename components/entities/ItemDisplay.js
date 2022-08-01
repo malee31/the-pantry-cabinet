@@ -1,20 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ListModeControls from "../parts/ListModeControls";
 import NoItemsDisplay from "../units/NoItemsDisplay";
 import ItemGrid from "../units/ItemGrid";
 import ItemList from "../units/ItemList";
+import useItemContext from "../parts/ItemContext/useItemContext";
 
 export default function ItemDisplay() {
+	const ItemContext = useItemContext();
 	const [displayMode, setDisplayMode] = useState("grid");
+
+	/* For demo usage */
 	const [showSampleItems, setShowSampleItems] = useState(false);
-	const items = showSampleItems ?
-		Array(41)
-			.fill(undefined)
-			.map((val, index) => ({ id: index }))
-		: [];
+	useEffect(() => {
+		ItemContext.setItems(showSampleItems ?
+			Array(41)
+				.fill(undefined)
+				.map((val, index) => ({ id: index }))
+			: []
+		);
+	}, [ItemContext, showSampleItems])
 
 	const Display = displayMode === "list" ? ItemList : ItemGrid;
-	const isEmpty = !Array.isArray(items) || items.length === 0;
+	const isEmpty = !Array.isArray(ItemContext.items) || ItemContext.items.length === 0;
+
 
 	return (
 		<div className="w-full h-full min-h-0 flex flex-col relative">
@@ -30,7 +38,7 @@ export default function ItemDisplay() {
 						onClick={() => setShowSampleItems(true)}
 					/>
 				) : (
-					<Display items={items}/>
+					<Display items={ItemContext.items}/>
 				)
 			}
 		</div>

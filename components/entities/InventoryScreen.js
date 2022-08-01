@@ -2,6 +2,7 @@ import Head from "next/head";
 import Navbar from "../sections/Navbar";
 import Sidebar from "../sections/Sidebar";
 import ItemDisplay from "./ItemDisplay";
+import ItemContextProvider from "../parts/ItemContext/ItemContextProvider";
 
 export default function InventoryScreen() {
 
@@ -14,9 +15,11 @@ export default function InventoryScreen() {
 			</Head>
 
 			<main className="w-screen h-screen grid" style={{ gridTemplate: "min-content/min-content 1fr" }}>
-				<Navbar className="col-span-2"/>
-				<Sidebar/>
-				<ItemDisplay/>
+				<ItemContextProvider>
+					<Navbar className="col-span-2"/>
+					<Sidebar/>
+					<ItemDisplay/>
+				</ItemContextProvider>
 			</main>
 		</>
 	);
