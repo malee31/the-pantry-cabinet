@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
 import { classNameMerge } from "../../utils";
 import { Nu } from "../../public/storybook/947.d1b00fb4.iframe.bundle";
@@ -18,6 +18,15 @@ export default function ItemCounter(props) {
 	} = props;
 	const [count, setCount] = useState(defaultAmount);
 	const [inputVal, setInputVal] = useState(null);
+
+	useEffect(() => {
+		if(defaultAmount !== count) {
+			setCount(defaultAmount);
+			if(inputVal !== null) {
+				setInputVal(null);
+			}
+		}
+	}, [defaultAmount]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const onInput = e => {
 		const input = e.currentTarget.value;
