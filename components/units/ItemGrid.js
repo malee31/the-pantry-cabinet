@@ -1,4 +1,5 @@
 import ItemCard from "../parts/ItemCard";
+import { classNameMerge } from "../../utils";
 
 export default function ItemGrid(props) {
 	const {
@@ -11,15 +12,14 @@ export default function ItemGrid(props) {
 
 	return (
 		<div
-			className="w-full h-full px-2 grid gap-2 auto-cols-min items-center justify-center justify-items-center overflow-auto"
-			style={
-				Object.assign({
-					gridTemplate: "min-content/repeat(auto-fit, minmax(15.25rem, 1fr))"
-				}, style)
-			}
-			{...additionalProps}
-		>
-			{items && items.map(item => <ItemCard key={item.id} {...item}/>)}
+			className={classNameMerge("w-full h-full overflow-auto", className)}
+			{...additionalProps}>
+			<div
+				className="w-full px-2 grid gap-2 items-center justify-center justify-items-center"
+				style={{ gridTemplate: "min-content/repeat(auto-fit, minmax(15.25rem, 1fr))" }}
+			>
+				{items && items.map(item => <ItemCard key={item.id} {...item}/>)}
+			</div>
 		</div>
 	);
 }

@@ -1,5 +1,29 @@
 import ItemCounter from "./ItemCounter";
 
+const gridTemplateColumns = "1fr 3fr min-content";
+
+export function ItemListHeader() {
+	return (
+		<div
+			className="w-full pl-2 py-1 border-2 border-neutral-100 grid grid-rows-1 items-center"
+			style={{ gridTemplateColumns: gridTemplateColumns }}
+		>
+			<span className="leading-5 pr-2">
+				Item Name
+			</span>
+			<span className="leading-5 px-2 border-x-2 border-neutral-100">
+				Caption
+			</span>
+			<span className="relative">
+				<ItemCounter className="px-2 justify-self-center invisible"/>
+				<span className="absolute top-0 left-0 w-full text-center">
+					Amount
+				</span>
+			</span>
+		</div>
+	);
+}
+
 export default function ItemListItem(props) {
 	const {
 		imageSrc = "/static/images/cake.jpg",
@@ -12,26 +36,22 @@ export default function ItemListItem(props) {
 
 	return (
 		<div
-			className="w-full py-1 border-2 border-neutral-100 grid grid-rows-1 grid-cols-7 items-center"
-			style={
-				Object.assign({
-					gridTemplateColumns: "repeat(6, 1fr) min-content"
-				}, style)
-			}
+			className="w-full pl-2 py-1 border-2 border-neutral-100 grid grid-rows-1 items-center"
+			style={Object.assign({ gridTemplateColumns: gridTemplateColumns }, style)}
 			{...args}
 		>
 			<span
 				title={label}
 				style={{ hyphens: "auto" }}
-				className="line-clamp-2 leading-5 col-span-2 pl-4 pr-2"
+				className="line-clamp-2 leading-5 pr-2"
 			>
 				{label}
 			</span>
-			<span className="line-clamp-2 leading-5 col-span-4 px-2 border-x-2 border-neutral-100">
+			<span className="line-clamp-2 leading-5 px-2 border-x-2 border-neutral-100">
 				{caption}
 			</span>
 			<ItemCounter
-				className="col-span-1 px-2 justify-self-center"
+				className="px-2 justify-self-center"
 				defaultAmount={defaultAmount}
 			/>
 		</div>

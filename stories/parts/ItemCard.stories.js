@@ -1,7 +1,11 @@
 import ItemCard from "../../components/parts/ItemCard";
 import cakeImage from "../../public/static/images/cake.jpg";
 
-const Template = (args) => <ItemCard {...args}/>;
+const Template = (args) => (
+	<div style={{ width: "max(50vmin, 15rem)" }}>
+		<ItemCard {...args}/>
+	</div>
+);
 export const Default = Template.bind({});
 
 export const Long_Label = Template.bind({});
