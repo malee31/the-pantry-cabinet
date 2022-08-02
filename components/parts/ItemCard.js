@@ -23,7 +23,7 @@ export default function ItemCard(props) {
 					className="absolute w-full h-full"
 				>
 					<Image
-						className="w-full aspect-[4/3] object-cover object-center"
+						className="w-full aspect-[4/3] object-cover object-center select-none"
 						src={imageSrc}
 						alt={label}
 						layout="fill"
@@ -35,21 +35,21 @@ export default function ItemCard(props) {
 				onClick={() => setExpand(true)}
 				onPointerLeave={() => expand && setExpand(false)}
 			>
-				<p className="h-fit pb-0.5 group-hover:pb-0 border-b border-gray-300 text-xl leading-6 align-middle">
+				<div className="h-fit pb-0.5 group-hover:pb-0 border-b border-gray-300 text-xl leading-6 align-middle">
 					<span className="ml-2 float-right text-base leading-4">
 					<ItemCounter defaultAmount={defaultAmount}/>
-				</span>
+					</span>
 					<span
 						title={label}
 						style={{ hyphens: "auto" }}
 						className="line-clamp-2 transition-[font-size,line-height,padding] group-hover:text-base group-hover:leading-4 group-hover:py-0.5"
 					>
-					{label}
-				</span>
-				</p>
+						{label}
+					</span>
+				</div>
 				<p
 					style={{ minHeight: "4rem" }}
-					className={`flex-1 -m-2 mt-0 p-2 pt-0 min-h-0 overflow-hidden ${expand ? "overflow-y-auto" : ""}`}>
+					className={`flex-1 -m-2 mt-0 p-2 pt-0 min-h-0 overflow-hidden overscroll-contain ${expand ? "overflow-y-auto" : ""}`}>
 					{caption}
 				</p>
 			</div>

@@ -8,13 +8,11 @@ export default function SidebarAccordian({ label, Icon, children }) {
 
 	return (
 		<div className="text-lg">
-			<span className="cursor-pointer inline-block w-full" onClick={() => setCollapsed(!collapsed)}>
+			<span className="cursor-pointer inline-block w-full select-none" onClick={() => setCollapsed(!collapsed)}>
 				<DirectionIcon className="inline" height="1em"/> {label} <Icon className="inline" height=".9em"/>
 			</span>
 			<div
-				style={{
-					gridTemplateColumns: "min-content 1fr"
-				}}
+				style={{ gridTemplateColumns: "min-content 1fr" }}
 				className={`ml-[0.5em] border-l-2 border-gray-300 text-base grid ${collapsed ? "h-0 overflow-hidden" : ""}`}
 			>
 				{children}

@@ -2,10 +2,19 @@ import Searchbar from "../parts/Searchbar";
 import { FilterIcon, SortAscendingIcon } from "@heroicons/react/solid";
 import SidebarAccordian from "../units/SidebarAccordian";
 import SidebarAccordianItem from "../parts/SidebarAccordianItem";
+import { classNameMerge } from "../../utils";
 
-export default function Sidebar() {
+export default function Sidebar(props) {
+	const {
+		className,
+		...args
+	} = props;
+
 	return (
-		<aside className="w-fit px-4 py-2 border border-gray-400 overflow-auto">
+		<aside
+			className={classNameMerge("w-fit h-full px-4 py-2 border border-gray-400 bg-white overflow-auto", className)}
+			{...args}
+		>
 			<Searchbar/>
 			<hr className="my-2"/>
 			<div className="w-full flex flex-col">
@@ -17,7 +26,6 @@ export default function Sidebar() {
 				</SidebarAccordian>
 				<SidebarAccordian label="Filter" Icon={FilterIcon}>
 					<SidebarAccordianItem label="Owner"/>
-					<SidebarAccordianItem label="Name"/>
 					<SidebarAccordianItem label="Type"/>
 					<SidebarAccordianItem label="Categories"/>
 					<SidebarAccordianItem label="Less than"/>

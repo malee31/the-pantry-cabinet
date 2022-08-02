@@ -4,8 +4,14 @@ import NoItemsDisplay from "../units/NoItemsDisplay";
 import ItemGrid from "../units/ItemGrid";
 import ItemList from "../units/ItemList";
 import useItemContext from "../parts/ItemContext/useItemContext";
+import { classNameMerge } from "../../utils";
 
-export default function ItemDisplay() {
+export default function ItemDisplay(props) {
+	const {
+		className,
+		...args
+	} = props;
+
 	const ItemContext = useItemContext();
 	const [displayMode, setDisplayMode] = useState("grid");
 
@@ -18,14 +24,17 @@ export default function ItemDisplay() {
 				.map((val, index) => ({ id: index }))
 			: []
 		);
-	}, [ItemContext, showSampleItems])
+	}, [showSampleItems]);
 
 	const Display = displayMode === "list" ? ItemList : ItemGrid;
 	const isEmpty = !Array.isArray(ItemContext.items) || ItemContext.items.length === 0;
 
 
 	return (
-		<div className="w-full h-full min-h-0 flex flex-col relative">
+		<div
+			className={classNameMerge("w-full h-full min-h-0 flex flex-col relative", className)}
+			{...args}
+		>
 			<ListModeControls
 				mode={displayMode}
 				onGridMode={() => setDisplayMode("grid")}
