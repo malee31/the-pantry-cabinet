@@ -1,9 +1,14 @@
 const path = require("path");
 
 module.exports = {
-	staticDirs: [
-		path.resolve(__dirname, "../public")
-	],
+	staticDirs: (x, config) => {
+		if(config.configType === "DEVELOPMENT") {
+			return [
+				path.resolve(__dirname, "../public")
+			];
+		}
+		return [];
+	},
 	stories: [
 		"../stories/**/*.stories.mdx",
 		"../stories/**/*.stories.@(js|jsx|ts|tsx)"
