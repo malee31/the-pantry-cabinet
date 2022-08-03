@@ -32,7 +32,7 @@ export default function ItemCard(props) {
 			</div>
 			<div
 				className="min-h-0 my-1 px-2 flex flex-col overflow-hidden transition-[height]"
-				onClick={() => setExpand(true)}
+				onClick={() => setExpand(!expand)}
 				onPointerLeave={() => expand && setExpand(false)}
 			>
 				<div className="h-fit pb-0.5 group-hover:pb-0 border-b border-gray-300 text-xl leading-6 align-middle">
@@ -49,7 +49,7 @@ export default function ItemCard(props) {
 				</div>
 				<p
 					style={{ minHeight: "4rem" }}
-					className={`flex-1 -m-2 mt-0 p-2 pt-0 min-h-0 overflow-hidden overscroll-contain ${expand ? "overflow-y-auto" : ""}`}>
+					className={`flex-1 -m-2 mt-0 p-2 pt-0 min-h-0 overflow-hidden ${expand ? "overscroll-contain overflow-y-auto" : ""}`}>
 					{caption}
 				</p>
 			</div>
