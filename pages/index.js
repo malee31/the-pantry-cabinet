@@ -1,7 +1,7 @@
 import Head from "next/head";
-import InventoryScreen from "../components/entities/InventoryScreen";
+import InventoryDemoScreen from "../components/entities/InventoryDemoScreen";
 
-export default function Home() {
+export default function Demo() {
 	return (
 		<>
 			<Head>
@@ -9,7 +9,7 @@ export default function Home() {
 				<meta name="description" content="A Pantry Inventory Site Built With NextJS and Tailwind"/>
 				<link rel="icon" href="/favicon.ico"/>
 			</Head>
-			<InventoryScreen/>
+			<InventoryDemoScreen/>
 		</>
 	);
 }
