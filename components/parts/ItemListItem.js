@@ -1,4 +1,5 @@
 import ItemCounter from "./ItemCounter";
+import { useState } from "react";
 
 const gridTemplateColumns = "1fr 3fr min-content";
 
@@ -33,6 +34,7 @@ export default function ItemListItem(props) {
 		style = {},
 		...args
 	} = props;
+	const [expand, setExpand] = useState(false);
 
 	return (
 		<div
@@ -47,7 +49,12 @@ export default function ItemListItem(props) {
 			>
 				{label}
 			</span>
-			<span className="line-clamp-2 leading-5 px-2 border-x-2 border-neutral-100">
+			<span
+				className="line-clamp-2 leading-5 px-2 py-0.5 border-x-2 border-neutral-100 overscroll-contain"
+				onClick={() => setExpand(!expand)}
+				onPointerLeave={() => expand && setExpand(false)}
+				style={expand ? { overflowY: "auto" } : {}}
+			>
 				{caption}
 			</span>
 			<ItemCounter
