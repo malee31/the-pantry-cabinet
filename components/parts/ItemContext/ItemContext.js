@@ -3,6 +3,7 @@ import { createContext } from "react";
 /**
  * @typedef {Object} ItemContextValue
  * Contains all properties for the Item Context including methods to update items within it
+ * @property {string|null} id Pantry Cabinet id for database collections. Do not fetch data or load when null
  * @property {boolean} [loaded = true] Set to true once items have been loaded from storage
  * @property {function} setLoaded Sets the loaded property. Call once loaded or unloaded
  * @property {Array<Items>|null} items Array of all the items in the context
@@ -29,6 +30,7 @@ export function defaultItemContext(overrides = {}) {
 	const appendItem = overrides.appendItem || ((item) => setItems([...items, item]));
 
 	return {
+		id: overrides.id || null,
 		loaded: typeof overrides.loaded === "boolean" ? overrides.loaded : true,
 		setLoaded: overrides.setLoaded || (() => {}),
 		items,

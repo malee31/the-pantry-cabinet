@@ -5,7 +5,6 @@ import InventoryScreen from "../../components/entities/InventoryScreen";
 export default function Pantry() {
 	const router = useRouter();
 	const { pantry_id } = router.query;
-	console.log(`Loaded Pantry: ${pantry_id}`);
 
 	return (
 		<>
@@ -14,7 +13,7 @@ export default function Pantry() {
 				<meta name="description" content="A Pantry Inventory Site Built With NextJS and Tailwind"/>
 				<link rel="icon" href="/favicon.ico"/>
 			</Head>
-			<InventoryScreen/>
+			<InventoryScreen pantryId={pantry_id}/>
 		</>
 	);
 }

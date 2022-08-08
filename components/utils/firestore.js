@@ -5,17 +5,17 @@ export async function getCabinet(id) {
 	return getDoc(doc(collection(firestore, "pantry"), id));
 }
 
-export async function getItems(cabinet) {
-	if(!cabinet.id) throw new Error("Cabinet does not have a valid id");
+export async function getItems(cabinetId) {
+	if(!cabinetId) throw new Error("Cabinet does not have a valid id");
 
-	return collection(firestore, "pantry", cabinet.id, "items");
+	return collection(firestore, "pantry", cabinetId, "items");
 }
 
 export async function addItem(cabinet, item) {
 	if(typeof item !== "object") throw new TypeError("Item must be an object");
 
 	try {
-		const items = await getItems(cabinet);
+		const items = await getItems(cabinet.id);
 		const newItem = await addDoc(items, item);
 		console.log("Item added: ", newItem);
 	} catch(err) {
@@ -24,8 +24,8 @@ export async function addItem(cabinet, item) {
 	}
 }
 
-export async function listenItems(cabinet, cb) {
-	const items = await getItems(cabinet);
+export async function listenItems(cabinetId, cb) {
+	const items = await getItems(cabinetId);
 	return onSnapshot(items, cb);
 }
 
@@ -34,7 +34,7 @@ export async function listenItems(cabinet, cb) {
 	import { addItem, getCabinet, listenItems } from "../utils/firestore";
 	getCabinet("demo")
 		.then(async cabinet => {
-			await listenItems(cabinet, items => {
+			await listenItems(cabinet.id, items => {
 				items.forEach(console.log);
 			});
 			await addItem(cabinet, {
