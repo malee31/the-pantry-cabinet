@@ -16,6 +16,8 @@ export default function ItemCard(props) {
 		<div
 			{...args}
 			className="fade-in group w-full min-w-[15rem] max-w-[22rem] aspect-[5/6] flex flex-col rounded-lg border-4 border-neutral-100 bg-white transition-[border-color] duration-200 hover:border-neutral-200 overflow-hidden"
+			tabIndex={-1}
+			onBlur={() => expand && setExpand(false)}
 		>
 			<div className="relative flex-shrink-0 group-hover:flex-shrink transition-[flex-shrink] box-content w-full aspect-[4/3] bg-black">
 				<div
@@ -32,8 +34,7 @@ export default function ItemCard(props) {
 			</div>
 			<div
 				className="min-h-0 my-1 px-2 flex flex-col overflow-hidden transition-[height]"
-				onClick={() => setExpand(!expand)}
-				onPointerLeave={() => expand && setExpand(false)}
+				onClick={() => {setExpand(!expand)}}
 			>
 				<div className="h-fit pb-0.5 group-hover:pb-0 border-b border-gray-300 text-xl leading-6 align-middle">
 					<span className="ml-2 float-right text-base leading-4">

@@ -40,6 +40,8 @@ export default function ItemListItem(props) {
 		<div
 			className="w-full pl-2 py-1 border-2 border-neutral-100 grid grid-rows-1 items-center"
 			style={Object.assign({ gridTemplateColumns: gridTemplateColumns }, style)}
+			tabIndex={-1}
+			onBlur={() => expand && setExpand(false)}
 			{...args}
 		>
 			<span
@@ -52,7 +54,6 @@ export default function ItemListItem(props) {
 			<span
 				className="line-clamp-2 leading-5 px-2 py-0.5 border-x-2 border-neutral-100 overscroll-contain"
 				onClick={() => setExpand(!expand)}
-				onPointerLeave={() => expand && setExpand(false)}
 				style={expand ? { overflowY: "auto" } : {}}
 			>
 				{caption}
