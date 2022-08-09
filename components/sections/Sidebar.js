@@ -19,10 +19,10 @@ export default function Sidebar(props) {
 			<hr className="my-2"/>
 			<div className="w-full flex flex-col">
 				<SidebarAccordian label="Sort" Icon={SortAscendingIcon}>
-					<SidebarAccordianItem label="Name"/>
-					<SidebarAccordianItem label="Type"/>
-					<SidebarAccordianItem label="Category"/>
-					<SidebarAccordianItem label="Count"/>
+					<SidebarAccordianItem label="Name" type="checkbox"/>
+					<SidebarAccordianItem label="Type" type="checkbox"/>
+					<SidebarAccordianItem label="Category" type="checkbox"/>
+					<SidebarAccordianItem label="Count" type="checkbox"/>
 				</SidebarAccordian>
 				<SidebarAccordian label="Filter" Icon={FilterIcon}>
 					<SidebarAccordianItem label="Owner"/>

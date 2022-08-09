@@ -15,6 +15,14 @@ export default {
 		label: {
 			control: "text",
 			defaultValue: "Name"
+		},
+		type: {
+			control: "radio",
+			defaultValue: "input",
+			options: [
+				"input",
+				"checkbox"
+			]
 		}
 	}
 };
