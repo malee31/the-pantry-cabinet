@@ -30,7 +30,6 @@ export default function ItemCounter(props) {
 	const onInput = e => {
 		const input = e.currentTarget.value;
 		const filteredInput = input.replace(/[^0-9]/g, "");
-		console.log(filteredInput)
 		setInputVal(filteredInput);
 	};
 

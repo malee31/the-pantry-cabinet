@@ -10,6 +10,7 @@ export default {
 	title: "Parts/Nav Bar",
 	component: Navbar,
 	argTypes: {
+		title: { control: "text" },
 		showAdd: {
 			control: "boolean",
 			defaultValue: true

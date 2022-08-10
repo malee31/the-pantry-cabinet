@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { addItem } from "../utils/firestore";
+import useItemContext from "../parts/ItemContext/useItemContext";
+
 function RequiredStar() {
 	return (
 		<span className="text-red-400">*</span>
@@ -6,9 +10,31 @@ function RequiredStar() {
 
 export default function AddScreen(props) {
 	const { show, onHide } = props;
+	const ItemContext = useItemContext();
+	const [itemName, setItemName] = useState("");
+	const [itemDescription, setItemDescription] = useState("");
+	const [itemCount, setItemCount] = useState("0");
+	const [imageSrc, setImageSrc] = useState("/static/images/cake.jpg");
+	// TODO: Set image source
+
 	const handleAddItem = () => {
-		console.log("TODO: Add item to DB");
-		onHide && onHide();
+		if(ItemContext.id === null) return;
+
+		const newItem = {
+			name: itemName,
+			description: itemDescription,
+			count: Number(itemCount),
+			image: imageSrc
+		};
+
+		addItem(ItemContext.id, newItem)
+			.then(() => {
+				setItemName("");
+				setItemDescription("");
+				setItemCount("");
+				// setImageSrc("");
+				onHide && onHide();
+			});
 	};
 
 	return show && (
@@ -21,20 +47,25 @@ export default function AddScreen(props) {
 						<input
 							className="mb-2 px-2 border flex-shrink-0"
 							type="text"
+							value={itemName}
+							onChange={e => setItemName(e.currentTarget.value)}
 							id="add-screen-item-name"
 						/>
 
 						<label className="flex-shrink-0" htmlFor="add-screen-item-description">Item Description <RequiredStar/></label>
 						<textarea
 							className="min-h-[5rem] max-h-[15rem] mb-2 p-2 border flex-shrink-0"
+							value={itemDescription}
+							onChange={e => setItemDescription(e.currentTarget.value)}
 							id="add-screen-item-description"
 						/>
 
 						<label className="flex-shrink-0" htmlFor="add-screen-item-count">Item Count <RequiredStar/></label>
 						<input
 							className="mb-2 pl-2 border flex-shrink-0"
+							value={itemCount}
+							onChange={e => setItemCount(e.currentTarget.value)}
 							type="number"
-							defaultValue="0"
 							id="add-screen-item-count"
 						/>
 

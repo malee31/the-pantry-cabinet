@@ -13,7 +13,7 @@ export default function InventoryDemoScreen() {
 	return (
 		<main className="w-screen h-screen grid" style={{ gridTemplate: "min-content/min-content 1fr" }}>
 			<ItemContextProvider>
-				<Navbar className="col-span-2"/>
+				<Navbar title="The Pantry Cabinet Demo" className="col-span-2"/>
 				<CollapsibleSidebar collapsed={showSidebar} onToggle={toggleSidebar}/>
 				<ItemDisplayDemo className="col-span-2 md:col-span-1"/>
 			</ItemContextProvider>

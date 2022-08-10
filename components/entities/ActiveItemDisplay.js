@@ -14,8 +14,10 @@ export default function ActiveItemDisplay(props) {
 					const data = item.data();
 					return {
 						id: item.id,
-						...data,
-						imageSrc: data.image
+						label: data.name,
+						caption: data.description,
+						imageSrc: data.image,
+						defaultAmount: data.count
 					};
 				});
 

@@ -1,5 +1,5 @@
 import { firestore } from "./firebaseInit";
-import { collection, addDoc, getDocs, getDoc, doc, onSnapshot } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 
 export async function getCabinet(id) {
 	return getDoc(doc(collection(firestore, "pantry"), id));
@@ -11,11 +11,11 @@ export async function getItems(cabinetId) {
 	return collection(firestore, "pantry", cabinetId, "items");
 }
 
-export async function addItem(cabinet, item) {
+export async function addItem(cabinetId, item) {
 	if(typeof item !== "object") throw new TypeError("Item must be an object");
 
 	try {
-		const items = await getItems(cabinet.id);
+		const items = await getItems(cabinetId);
 		const newItem = await addDoc(items, item);
 		console.log("Item added: ", newItem);
 	} catch(err) {
