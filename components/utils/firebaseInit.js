@@ -1,6 +1,7 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth, connectAuthEmulator } from "firebase/auth";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { connectStorageEmulator, getStorage } from "firebase/storage";
 
@@ -23,11 +24,13 @@ if(typeof window !== "undefined") {
 }
 export const firestore = getFirestore(app);
 export const storage = getStorage(app);
+export const auth = getAuth(app);
 
 // Connect emulators in development
 if(process.env.NODE_ENV === "development" && typeof window !== "undefined" && !window["hot_reload_init"]) {
 	console.log("===== Connecting Emulators =====");
 	connectFirestoreEmulator(firestore, "localhost", 8080);
 	connectStorageEmulator(storage, "localhost", 9199);
+	connectAuthEmulator(auth, "http://localhost:9099");
 	window["hot_reload_init"] = "CONNECTED";
 }
