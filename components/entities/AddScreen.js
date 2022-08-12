@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addItem } from "../utils/firestore";
 import useItemContext from "../parts/ItemContext/useItemContext";
+import { uploadImage } from "../utils/firestorage";
 
 function RequiredStar() {
 	return (
@@ -20,6 +21,7 @@ export default function AddScreen(props) {
 	const handleAddItem = () => {
 		if(ItemContext.id === null) return;
 
+		console.log(imageSrc)
 		const newItem = {
 			name: itemName,
 			description: itemDescription,
@@ -35,6 +37,16 @@ export default function AddScreen(props) {
 				// setImageSrc("");
 				onHide && onHide();
 			});
+	};
+
+	const handleImageUpload = e => {
+		const file = e.target.files[0];
+		if(file && ItemContext.id) {
+			uploadImage(`/pantry/${ItemContext.id}/images/${file.name}`, file, {
+				onProgress: percentage => console.log(`Uploaded: ${percentage}`),
+				onComplete: fileSrc => setImageSrc(fileSrc)
+			});
+		}
 	};
 
 	return show && (
@@ -73,6 +85,8 @@ export default function AddScreen(props) {
 						<input
 							className="mb-2 border flex-shrink-0"
 							type="file"
+							accept="image/*"
+							onChange={handleImageUpload}
 							id="add-screen-upload-image"
 						/>
 

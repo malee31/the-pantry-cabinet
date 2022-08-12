@@ -31,6 +31,6 @@ if(process.env.NODE_ENV === "development" && typeof window !== "undefined" && !w
 	console.log("===== Connecting Emulators =====");
 	connectFirestoreEmulator(firestore, "localhost", 8080);
 	connectStorageEmulator(storage, "localhost", 9199);
-	connectAuthEmulator(auth, "http://localhost:9099");
+	connectAuthEmulator(auth, "http://localhost:9099", { disableWarnings: true });
 	window["hot_reload_init"] = "CONNECTED";
 }

@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  distDir: "build"
+  distDir: "build",
+  images: {
+    domains: ["localhost", "firebasestorage.googleapis.com"]
+  }
 };
 
 module.exports = nextConfig;
