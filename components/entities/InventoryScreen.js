@@ -1,8 +1,8 @@
+import { useState } from "react";
 import ItemContextProvider from "../parts/ItemContext/ItemContextProvider";
 import Navbar from "../sections/Navbar";
 import CollapsibleSidebar from "../sections/CollapsibleSidebar";
 import ActiveItemDisplay from "./ActiveItemDisplay";
-import { useState } from "react";
 import AddScreen from "./AddScreen";
 
 export default function InventoryScreen({ pantryId }) {

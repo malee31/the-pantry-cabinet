@@ -1,5 +1,5 @@
-import ItemCounter from "./ItemCounter";
 import { useState } from "react";
+import ItemCounter from "./ItemCounter";
 
 const gridTemplateColumns = "1fr 3fr min-content";
 

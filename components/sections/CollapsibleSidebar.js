@@ -1,5 +1,5 @@
-import { MenuIcon, XIcon } from "@heroicons/react/solid";
 import Sidebar from "./Sidebar";
+import { MenuIcon, XIcon } from "@heroicons/react/solid";
 
 export default function CollapsibleSidebar(props) {
 	const {

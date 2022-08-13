@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { classNameMerge } from "../../utils";
+import useItemContext from "../parts/ItemContext/useItemContext";
 import ListModeControls from "../parts/ListModeControls";
 import NoItemsDisplay from "../units/NoItemsDisplay";
 import ItemGrid from "../units/ItemGrid";
 import ItemList from "../units/ItemList";
-import useItemContext from "../parts/ItemContext/useItemContext";
-import { classNameMerge } from "../../utils";
 
 export default function ItemDisplay(props) {
 	const {

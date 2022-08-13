@@ -1,5 +1,5 @@
-import ItemCard from "../parts/ItemCard";
 import { classNameMerge } from "../../utils";
+import ItemCard from "../parts/ItemCard";
 
 export default function ItemGrid(props) {
 	const {

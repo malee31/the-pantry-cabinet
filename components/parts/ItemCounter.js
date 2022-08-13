@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
 import { classNameMerge } from "../../utils";
+import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
 
 /**
  * The counter for the number of an item there is with controls to add or subtract

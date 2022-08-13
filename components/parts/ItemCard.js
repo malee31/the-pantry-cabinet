@@ -1,6 +1,6 @@
-import ItemCounter from "./ItemCounter";
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
+import ItemCounter from "./ItemCounter";
 
 export default function ItemCard(props) {
 	const {

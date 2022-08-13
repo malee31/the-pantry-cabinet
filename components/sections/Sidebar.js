@@ -1,8 +1,8 @@
+import { classNameMerge } from "../../utils";
 import Searchbar from "../parts/Searchbar";
-import { FilterIcon, SortAscendingIcon } from "@heroicons/react/solid";
 import SidebarAccordian from "../units/SidebarAccordian";
 import SidebarAccordianItem from "../parts/SidebarAccordianItem";
-import { classNameMerge } from "../../utils";
+import { FilterIcon, SortAscendingIcon } from "@heroicons/react/solid";
 
 export default function Sidebar(props) {
 	const {

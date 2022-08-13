@@ -1,7 +1,7 @@
 import { useEffect } from "react";
+import { listenItems } from "../utils/firestore";
 import useItemContext from "../parts/ItemContext/useItemContext";
 import ItemDisplay from "./ItemDisplay";
-import { listenItems } from "../utils/firestore";
 
 export default function ActiveItemDisplay(props) {
 	const ItemContext = useItemContext();

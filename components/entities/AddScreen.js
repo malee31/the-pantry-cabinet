@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { XIcon } from "@heroicons/react/solid";
 import { addItem } from "../utils/firestore";
-import useItemContext from "../parts/ItemContext/useItemContext";
 import { uploadImage } from "../utils/firestorage";
+import useItemContext from "../parts/ItemContext/useItemContext";
+import { XIcon } from "@heroicons/react/solid";
 
 function RequiredStar() {
 	return (

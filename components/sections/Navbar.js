@@ -1,9 +1,9 @@
+import { login, logout } from "../utils/fireauth";
+import { classNameMerge } from "../../utils";
+import useAuth from "../parts/AuthContext/useAuth";
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/solid";
 import { LoginIcon, LogoutIcon } from "@heroicons/react/outline";
-import { classNameMerge } from "../../utils";
-import { login, logout } from "../utils/fireauth";
-import useAuth from "../parts/AuthContext/useAuth";
 
 export default function Navbar({ className, title, onAdd }) {
 	const disableAdd = !onAdd;
