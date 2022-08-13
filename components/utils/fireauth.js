@@ -1,5 +1,5 @@
 import { auth } from "./firebaseInit";
-import { GoogleAuthProvider, signInWithRedirect, signOut, onAuthStateChanged } from "firebase/auth";
+import { GoogleAuthProvider, onAuthStateChanged, signInWithRedirect, signOut } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();
 

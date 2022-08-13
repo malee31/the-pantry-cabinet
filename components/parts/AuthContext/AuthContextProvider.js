@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AuthContext, {AuthContextDefault} from "./AuthContext";
+import AuthContext, { AuthContextDefault } from "./AuthContext";
 import { listenLogin } from "../../utils/fireauth";
 
 export default function AuthContextProvider({ children }) {

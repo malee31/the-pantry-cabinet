@@ -1,7 +1,7 @@
 import { storage } from "./firebaseInit";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
-export function uploadImage(path, file, { onProgress, onComplete }) {
+export function uploadImage(path, file, { onProgress, onComplete, onError }) {
 	const imageRef = ref(storage, path);
 	const upload = uploadBytesResumable(imageRef, file);
 
@@ -11,7 +11,7 @@ export function uploadImage(path, file, { onProgress, onComplete }) {
 			onProgress && onProgress(percent);
 		},
 		err => {
-			console.error(err);
+			onError && onError(err);
 		},
 		() => {
 			if(onComplete) {
@@ -20,5 +20,4 @@ export function uploadImage(path, file, { onProgress, onComplete }) {
 			}
 		}
 	);
-	return
 }
