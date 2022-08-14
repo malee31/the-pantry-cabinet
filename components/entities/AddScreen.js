@@ -7,58 +7,82 @@ import { XIcon } from "@heroicons/react/solid";
 function RequiredStar() {
 	return (
 		<span className="text-red-400">*</span>
-	)
+	);
 }
+
+const newItemTemplate = {
+	name: "",
+	description: "",
+	count: 0,
+	image: ""
+};
 
 export default function AddScreen(props) {
 	const { show, onHide } = props;
 	const ItemContext = useItemContext();
-	const [itemName, setItemName] = useState("");
-	const [itemDescription, setItemDescription] = useState("");
-	const [itemCount, setItemCount] = useState("0");
-	const [imageSrc, setImageSrc] = useState("");
-	const [imageUploading, setImageUploading] = useState(false);
-	const [imageStatus, setImageStatus] = useState("Beginning Upload...");
+	const [newItem, setNewItem] = useState({
+		...newItemTemplate
+	});
+	const updateNewItem = mergeObj => {
+		setNewItem({
+			...newItem,
+			...mergeObj
+		});
+	};
+
+	const capitalizeFirstLetter = str => str && str.length ? `${str[0].toUpperCase()}${str.slice(1)}` : str;
+	const setItemName = name => updateNewItem({ name: capitalizeFirstLetter(name.trimStart()) });
+	const setItemDescription = description => updateNewItem({ description: capitalizeFirstLetter(description.trimStart()) });
+	const setItemCount = count => updateNewItem({ count: Math.max(0, Number(count)) || 0 });
+	const setImageSrc = imageSrc => updateNewItem({ image: imageSrc });
+
+	const [imageError, setImageError] = useState("");
+	const [imageStatus, setImageStatus] = useState("");
 
 	const handleAddItem = () => {
 		if(ItemContext.id === null) return;
 
-		const newItem = {
-			name: itemName,
-			description: itemDescription,
-			count: Number(itemCount),
-			image: imageSrc || "/static/images/cake.jpg"
+		const newItemFinal = {
+			...newItem,
+			image: newItem.image || "/static/images/default.jpg"
 		};
 
-		addItem(ItemContext.id, newItem)
+		addItem(ItemContext.id, newItemFinal)
 			.then(() => {
-				setItemName("");
-				setItemDescription("");
-				setItemCount("");
-				setImageSrc("");
+				setNewItem({ ...newItemTemplate });
 				onHide && onHide();
 			});
 	};
 
 	const handleImageUpload = e => {
-		setImageUploading(true);
 		const file = e.target.files[0];
-		if(file && ItemContext.id) {
-			uploadImage(`/pantry/${ItemContext.id}/images/${file.name}`, file, {
-				onProgress: percentage => setImageStatus(`Uploading: ${percentage}%`),
-				onComplete: fileSrc => {
-					setImageSrc(fileSrc);
-					setImageStatus("Image Uploaded!");
-				},
-				onError: err => {
-					if(err.code === "storage/unauthorized") {
-						setImageStatus("You must be logged in to upload images");
-						return;
-					}
-					setImageStatus(`Upload Failed: ${err.code ? `[${err.code}] ` : ""}${err.message}`);
-				}
-			});
+		if(!file) {
+			if(imageStatus) setImageStatus("");
+			setImageError("No image provided");
+			return;
 		}
+		if(!ItemContext.id) {
+			if(imageStatus) setImageStatus("");
+			setImageError("No pantry loaded");
+			return;
+		}
+
+		setImageStatus("Uploading Image...");
+		if(imageError) setImageError("");
+		uploadImage(`/pantry/${ItemContext.id}/images/${file.name}`, file, {
+			onProgress: percentage => setImageStatus(`Uploading: ${percentage}%`),
+			onComplete: fileSrc => {
+				setImageSrc(fileSrc);
+				setImageStatus(`Uploaded ${file.name}`);
+			},
+			onError: err => {
+				if(err.code === "storage/unauthorized") {
+					setImageError("Must be logged in to upload images");
+					return;
+				}
+				setImageError(`Upload Failed: ${err.code ? `[${err.code}] ` : ""}${err.message}`);
+			}
+		});
 	};
 
 	return show && (
@@ -85,7 +109,7 @@ export default function AddScreen(props) {
 							id="add-screen-item-name"
 							className="mb-2 px-2 border flex-shrink-0"
 							type="text"
-							value={itemName}
+							value={newItem.name}
 							onChange={e => setItemName(e.currentTarget.value)}
 							required={true}
 						/>
@@ -94,8 +118,8 @@ export default function AddScreen(props) {
 						<textarea
 							id="add-screen-item-description"
 							className="min-h-[5rem] max-h-[15rem] mb-2 p-2 border flex-shrink-0"
-							value={itemDescription}
-							onChange={e => setItemDescription(e.currentTarget.value.replace("\n", " ").replace(/\s+/g, " "))}
+							value={newItem.description}
+							onChange={e => setItemDescription(e.currentTarget.value.replace(/[ \t]+/g, " "))}
 							required={true}
 						/>
 
@@ -103,7 +127,7 @@ export default function AddScreen(props) {
 						<input
 							id="add-screen-item-count"
 							className="mb-2 pl-2 border flex-shrink-0"
-							value={itemCount}
+							value={newItem.count.toString()}
 							onChange={e => setItemCount(Math.max(Number(e.currentTarget.value), 0).toString())}
 							type="number"
 							min="0"
@@ -118,13 +142,17 @@ export default function AddScreen(props) {
 							accept="image/*"
 							onChange={handleImageUpload}
 						/>
-						{imageUploading && (
+						{imageError && (
+							<p className="text-red-400">{imageError}</p>
+						)}
+						{imageStatus && (
 							<p>{imageStatus}</p>
 						)}
 
 						<button
 							type="submit"
-							className="flex-shrink-0 mt-4 px-3 py-1.5 border rounded-md"
+							className="flex-shrink-0 mt-4 px-3 py-1.5 border rounded-md disabled:bg-gray-100 disabled:cursor-not-allowed"
+							disabled={!newItem.name || !newItem.description}
 						>
 							Add
 						</button>
