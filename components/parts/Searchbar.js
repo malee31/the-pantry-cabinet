@@ -15,6 +15,7 @@ export default function Searchbar() {
 			<button
 				className="h-full p-2 text-2xl bg-blue-400 rounded-full"
 				onClick={onClick}
+				aria-label="Search"
 			>
 				<SearchIcon className="h-full text-blue-200"/>
 			</button>

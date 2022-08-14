@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addItem } from "../utils/firestore";
 import { uploadImage } from "../utils/firestorage";
 import useItemContext from "../parts/ItemContext/useItemContext";
@@ -39,6 +39,11 @@ export default function AddScreen(props) {
 	const [imageError, setImageError] = useState("");
 	const [imageStatus, setImageStatus] = useState("");
 
+	useEffect(() => {
+		setImageStatus("");
+		setImageError("");
+	}, [show]);
+
 	const handleAddItem = () => {
 		if(ItemContext.id === null) return;
 
@@ -56,19 +61,12 @@ export default function AddScreen(props) {
 
 	const handleImageUpload = e => {
 		const file = e.target.files[0];
-		if(!file) {
-			if(imageStatus) setImageStatus("");
-			setImageError("No image provided");
-			return;
-		}
-		if(!ItemContext.id) {
-			if(imageStatus) setImageStatus("");
-			setImageError("No pantry loaded");
-			return;
-		}
+		if(!file) return setImageError("No image provided");
+		if(!ItemContext.id) return setImageError("No pantry loaded");
 
-		setImageStatus("Uploading Image...");
 		if(imageError) setImageError("");
+		setImageStatus("Uploading Image...");
+
 		uploadImage(`/pantry/${ItemContext.id}/images/${file.name}`, file, {
 			onProgress: percentage => setImageStatus(`Uploading: ${percentage}%`),
 			onComplete: fileSrc => {
@@ -145,7 +143,7 @@ export default function AddScreen(props) {
 						{imageError && (
 							<p className="text-red-400">{imageError}</p>
 						)}
-						{imageStatus && (
+						{!imageError && imageStatus && (
 							<p>{imageStatus}</p>
 						)}
 

@@ -21,12 +21,12 @@ export default function Navbar({ className, title, onAdd }) {
 			</Link>
 			<div className="h-full flex justify-between items-center">
 				<div className={`h-full aspect-square p-2 ${disableAdd ? "invisible" : ""}`}>
-					<button onClick={onAdd}>
+					<button onClick={onAdd} aria-label="Add Item">
 						<PlusIcon className="w-full h-full border border-black rounded-md"/>
 					</button>
 				</div>
 				<div className={`h-full aspect-square p-1.5 ${disableAdd ? "invisible" : ""}`}>
-					<button onClick={onAuth}>
+					<button onClick={onAuth} aria-label={loggedIn ? "Log Out" : "Log In"}>
 						{loggedIn
 							? <LoginIcon className="w-full h-full"/>
 							: <LogoutIcon className="w-full h-full"/>

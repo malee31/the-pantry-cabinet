@@ -18,6 +18,7 @@ export default function CollapsibleSidebar(props) {
 			<button
 				className={`absolute top-0 right-0 z-10 translate-x-full w-12 h-12 transition-[opacity] opacity-50 hover:opacity-100 ${collapsed ? "opacity-100" : ""} rounded-r-md border border-l-0 border-gray-400 bg-white text-neutral-600 cursor-pointer md:hidden`}
 				onClick={onToggle}
+				aria-label={collapsed ? "Open Menu" : "Close Menu"}
 			>
 				{
 					collapsed
