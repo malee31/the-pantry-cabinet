@@ -32,25 +32,25 @@ export default function ItemCard(props) {
 					/>
 				</div>
 			</div>
-			<div
-				className="min-h-0 my-1 px-2 flex flex-col overflow-hidden transition-[height]"
-				onClick={() => {setExpand(!expand)}}
-			>
+			<div className="min-h-0 my-1 px-2 flex flex-col overflow-hidden transition-[height]">
 				<div className="h-fit pb-0.5 group-hover:pb-0 border-b border-gray-300 text-xl leading-6 align-middle">
 					<span className="ml-2 float-right text-base leading-4">
-					<ItemCounter defaultAmount={defaultAmount}/>
+						<ItemCounter defaultAmount={defaultAmount}/>
 					</span>
 					<span
 						title={label}
 						style={{ hyphens: "auto" }}
 						className="line-clamp-2 transition-[font-size,line-height,padding] group-hover:text-base group-hover:leading-4 group-hover:py-0.5"
+						onClick={() => {setExpand(!expand)}}
 					>
 						{label}
 					</span>
 				</div>
 				<p
 					style={{ minHeight: "4rem" }}
-					className={`flex-1 -m-2 mt-0 p-2 pt-0 min-h-0 overflow-hidden ${expand ? "overscroll-contain overflow-y-auto" : ""}`}>
+					className={`whitespace-pre-line flex-1 -m-2 mt-0 p-2 pt-0 min-h-0 overflow-hidden ${expand ? "overscroll-contain overflow-y-auto" : ""}`}
+					onClick={() => {setExpand(!expand)}}
+				>
 					{caption}
 				</p>
 			</div>
