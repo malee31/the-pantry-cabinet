@@ -3,6 +3,7 @@ import { addItem } from "../utils/firestore";
 import { uploadImage } from "../utils/firestorage";
 import useItemContext from "../parts/ItemContext/useItemContext";
 import { XIcon } from "@heroicons/react/solid";
+import useAuth from "../parts/AuthContext/useAuth";
 
 function RequiredStar() {
 	return (
@@ -19,6 +20,7 @@ const newItemTemplate = {
 
 export default function AddScreen(props) {
 	const { show, onHide } = props;
+	const { loggedIn } = useAuth();
 	const ItemContext = useItemContext();
 	const [newItem, setNewItem] = useState({
 		...newItemTemplate
@@ -74,10 +76,6 @@ export default function AddScreen(props) {
 				setImageStatus(`Uploaded ${file.name}`);
 			},
 			onError: err => {
-				if(err.code === "storage/unauthorized") {
-					setImageError("Must be logged in to upload images");
-					return;
-				}
 				setImageError(`Upload Failed: ${err.code ? `[${err.code}] ` : ""}${err.message}`);
 			}
 		});
@@ -139,7 +137,11 @@ export default function AddScreen(props) {
 							type="file"
 							accept="image/*"
 							onChange={handleImageUpload}
+							disabled={!loggedIn}
 						/>
+						{!loggedIn && (
+							<p className="text-red-400">Signed in to upload images</p>
+						)}
 						{imageError && (
 							<p className="text-red-400">{imageError}</p>
 						)}

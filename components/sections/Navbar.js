@@ -6,7 +6,7 @@ import { PlusIcon } from "@heroicons/react/solid";
 
 export default function Navbar({ className, title, onAdd }) {
 	const disableAdd = !onAdd;
-	const { loggedIn } = useAuth();
+	const { loaded, loggedIn } = useAuth();
 
 	const onAuth = () => {
 		if(!loggedIn) login();
@@ -18,15 +18,15 @@ export default function Navbar({ className, title, onAdd }) {
 			<Link href="/">
 				<a className="text-2xl">{title || "The Pantry Cabinet"}</a>
 			</Link>
-			<div className="h-full flex justify-between items-center">
-				<div className={`h-full aspect-square p-2 ${disableAdd ? "invisible" : ""}`}>
+			<div className={`h-full p-1.5 flex justify-between items-center ${disableAdd ? "invisible" : ""}`}>
+				<div className="h-full aspect-square mx-2">
 					<button onClick={onAdd} aria-label="Add Item">
 						<PlusIcon className="w-full h-full border border-black rounded-md"/>
 					</button>
 				</div>
-				<div className={`h-full p-1.5 ${disableAdd ? "invisible" : ""}`}>
+				<div className="h-full">
 					<button className="h-full flex items-center border border-black px-2 py-1.5 rounded-md text-lg" onClick={onAuth} aria-label={loggedIn ? "Sign Out" : "Log In"}>
-						{loggedIn ? "Sign Out" : "Sign In"}
+						{!loaded ? "Verifying" : loggedIn ? "Sign Out" : "Sign In"}
 					</button>
 				</div>
 			</div>
