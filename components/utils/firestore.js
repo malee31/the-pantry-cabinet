@@ -1,5 +1,5 @@
 import { firestore } from "./firebaseInit";
-import { addDoc, collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, query, orderBy, where } from "firebase/firestore";
 
 export async function getItems(cabinetId) {
 	if(!cabinetId) throw new Error("Cabinet does not have a valid id");
@@ -20,11 +20,15 @@ export async function addItem(cabinetId, item) {
 	}
 }
 
-export async function listenItems(cabinetId, sort, cb) {
+export async function listenItems(cabinetId, sort, filters, cb) {
 	const items = await getItems(cabinetId);
 	let itemQuery = query(items);
 	if(sort) {
 		itemQuery = query(itemQuery, orderBy(sort));
+	}
+
+	for(const filter of filters) {
+		itemQuery = query(itemQuery, where(...filter));
 	}
 
 	return onSnapshot(itemQuery, cb);

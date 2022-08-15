@@ -7,6 +7,8 @@ import { createContext, useState } from "react";
  * @property {boolean} [loaded = true] Set to true once items have been loaded from storage
  * @property {function} setLoaded Sets the loaded property. Call once loaded or unloaded
  * @property {Array<Items>|null} items Array of all the items in the context
+ * @property {[string, string, string|number|boolean][]} [filters = []] Filters to apply to the results. See the Firestore where() function for operators
+ * @property {function} setFilters Sets the filter array to a new array. Do not mutate filters, shallow copy it instead
  * @property {string} [sort = ""] Key to sort by. Leave an empty string for no sort
  * @property {function} sortBy Sets the item key to sort results by
  * @property {function} setItems Completely replaces the items property with a new value
@@ -27,6 +29,8 @@ import { createContext, useState } from "react";
  */
 export function defaultItemContext(overrides = {}) {
 	const items = overrides.items || [];
+	const filters = overrides.filters || [];
+	const setFilters = overrides.setFilters || (() => {});
 	const sort = overrides.sort || "";
 	const sortBy = overrides.sortBy || (() => {});
 	const setItems = overrides.setItems || (() => {});
@@ -40,6 +44,8 @@ export function defaultItemContext(overrides = {}) {
 		items,
 		sort,
 		sortBy,
+		filters,
+		setFilters,
 		setItems,
 		findItem,
 		appendItem

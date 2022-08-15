@@ -5,14 +5,17 @@ export default function ItemContextProvider({ children, value, pantryId }) {
 	const [items, setItems] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 	const [sort, setSort] = useState("");
+	const [filters, setFilters] = useState("");
 	const itemContextVal = defaultItemContext({
 		id: pantryId || null,
-		items: items,
-		sort: sort,
+		items,
+		sort,
 		sortBy: setSort,
-		setItems: setItems,
-		loaded: loaded,
-		setLoaded: setLoaded
+		filters,
+		setFilters,
+		setItems,
+		loaded,
+		setLoaded
 	});
 
 	return (

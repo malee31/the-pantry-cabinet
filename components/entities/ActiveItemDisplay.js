@@ -8,7 +8,7 @@ export default function ActiveItemDisplay(props) {
 	useEffect(() => {
 		if(ItemContext.id === null) return;
 
-		const unsub = listenItems(ItemContext.id, ItemContext.sort,
+		const unsub = listenItems(ItemContext.id, ItemContext.sort, ItemContext.filters,
 			items => {
 				if(!items.empty) {
 					const results = items.docs.map(item => {
@@ -30,7 +30,7 @@ export default function ActiveItemDisplay(props) {
 		return () => {
 			unsub.then(cb => {cb()});
 		};
-	}, [ItemContext.id, ItemContext.sort]);
+	}, [ItemContext.id, ItemContext.sort, ItemContext.filters]);
 
 	return (
 		<ItemDisplay
