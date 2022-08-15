@@ -1,11 +1,12 @@
 import { useRef } from "react";
 
-export default function SidebarAccordianItem({ label, type = "text" }) {
+export default function SidebarAccordianItem({ label, type = "text", id }) {
 	const inputRef = useRef();
 
 	return (
 		<>
 			<label
+				htmlFor={id}
 				className="px-2 py-1 cursor-pointer"
 				onClick={() => {
 					inputRef.current.focus();
@@ -13,9 +14,10 @@ export default function SidebarAccordianItem({ label, type = "text" }) {
 				}}
 			>{label}</label>
 			<input
+				id={id}
 				ref={inputRef}
 				type={type}
-				className="max-w-[8rem] my-1 px-2 border-b-2 rounded-sm shadow-sm"
+				className={`max-w-[8rem] my-1 px-2 rounded-sm shadow-sm ${type === "text" ? "border-b-2" : "shadow-none"}`}
 			/>
 		</>
 	);
