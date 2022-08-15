@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AuthContext from "./AuthContext";
 
 /**
- * @returns {ItemContextValue} Returns value of nearest ItemContextProvider
+ * @returns {AuthContextValue} Returns value of nearest AuthContextProvider
  */
 export default function useAuth() {
 	return useContext(AuthContext);
