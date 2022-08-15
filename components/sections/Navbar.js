@@ -3,7 +3,6 @@ import { classNameMerge } from "../../utils";
 import useAuth from "../parts/AuthContext/useAuth";
 import Link from "next/link";
 import { PlusIcon } from "@heroicons/react/solid";
-import { LoginIcon, LogoutIcon } from "@heroicons/react/outline";
 
 export default function Navbar({ className, title, onAdd }) {
 	const disableAdd = !onAdd;
@@ -25,12 +24,9 @@ export default function Navbar({ className, title, onAdd }) {
 						<PlusIcon className="w-full h-full border border-black rounded-md"/>
 					</button>
 				</div>
-				<div className={`h-full aspect-square p-1.5 ${disableAdd ? "invisible" : ""}`}>
-					<button onClick={onAuth} aria-label={loggedIn ? "Log Out" : "Log In"}>
-						{loggedIn
-							? <LoginIcon className="w-full h-full"/>
-							: <LogoutIcon className="w-full h-full"/>
-						}
+				<div className={`h-full p-1.5 ${disableAdd ? "invisible" : ""}`}>
+					<button className="h-full flex items-center border border-black px-2 py-1.5 rounded-md text-lg" onClick={onAuth} aria-label={loggedIn ? "Sign Out" : "Log In"}>
+						{loggedIn ? "Sign Out" : "Sign In"}
 					</button>
 				</div>
 			</div>
