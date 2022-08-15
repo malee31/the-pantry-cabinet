@@ -5,7 +5,10 @@ import { SortAscendingIcon } from "@heroicons/react/solid";
 
 export default function SortAccordian() {
 	const ItemContext = useItemContext();
-	const onChange = e => ItemContext.sortBy(e.target.value);
+	const onChange = e => {
+		ItemContext.sortBy(e.target.value);
+		if(ItemContext.filters.length !== 0) ItemContext.setFilters([]);
+	};
 
 	return (
 		<SidebarAccordian label="Sort" Icon={SortAscendingIcon}>

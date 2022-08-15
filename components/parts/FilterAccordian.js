@@ -13,29 +13,35 @@ export default function FilterAccordian() {
 	const [moreThanFilter, setMoreThanFilter] = useState(validFilters.moreThan(0));
 	const [lessThanFilter, setLessThanFilter] = useState(validFilters.lessThan(0));
 	const onLessThan = e => {
-		const newVal = Number(e.target.value);
-		if(isNaN(newVal)) return;
-
-		const newFilter = validFilters.lessThan(newVal);
-		const filterCopy = [...ItemContext.filters, newFilter];
+		const filterCopy = [...ItemContext.filters];
 		const oldFilterPosition = filterCopy.indexOf(lessThanFilter);
 		if(oldFilterPosition > -1) {
 			filterCopy.splice(oldFilterPosition, 1);
 		}
+
+		const newVal = Number(e.target.value);
+		if(isNaN(newVal)) return;
+		e.target.value = "";
+
+		const newFilter = validFilters.lessThan(newVal);
+		filterCopy.push(newFilter);
 		setLessThanFilter(newFilter);
 		ItemContext.setFilters(filterCopy);
 	};
 
 	const onMoreThan = e => {
-		const newVal = Number(e.target.value);
-		if(isNaN(newVal)) return;
-
-		const newFilter = validFilters.moreThan(newVal);
-		const filterCopy = [...ItemContext.filters, newFilter];
+		const filterCopy = [...ItemContext.filters];
 		const oldFilterPosition = filterCopy.indexOf(moreThanFilter);
 		if(oldFilterPosition > -1) {
 			filterCopy.splice(oldFilterPosition, 1);
 		}
+
+		const newVal = Number(e.target.value);
+		if(isNaN(newVal)) return;
+		e.target.value = "";
+
+		const newFilter = validFilters.moreThan(newVal);
+		filterCopy.push(newFilter);
 		setMoreThanFilter(newFilter);
 		ItemContext.setFilters(filterCopy);
 	};
@@ -45,8 +51,8 @@ export default function FilterAccordian() {
 			<SidebarAccordianItem id="filter-owner" label="Owner" disabled={true}/>
 			<SidebarAccordianItem id="filter-type" label="Type" disabled={true}/>
 			<SidebarAccordianItem id="filter-categories" label="Categories" disabled={true}/>
-			<SidebarAccordianItem id="filter-less-than" label="Less than" onChange={onLessThan}/>
-			<SidebarAccordianItem id="filter-more-than" label="More than" onChange={onMoreThan}/>
+			<SidebarAccordianItem id="filter-less-than" label="Less than" onBlur={onLessThan} disabled={ItemContext.sort !== "count"}/>
+			<SidebarAccordianItem id="filter-more-than" label="More than" onBlur={onMoreThan} disabled={ItemContext.sort !== "count"}/>
 			<SidebarAccordianItem id="filter-edible" label="Edible" type="checkbox" disabled={true}/>
 		</SidebarAccordian>
 	);
