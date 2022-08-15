@@ -7,13 +7,13 @@ import { connectStorageEmulator, getStorage } from "firebase/storage";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-	apiKey: "AIzaSyB3KIY3TkQmfEkzF4055oMSY16l8DWKYyo",
-	authDomain: "pantry-cabinet.firebaseapp.com",
-	projectId: "pantry-cabinet",
-	storageBucket: "pantry-cabinet.appspot.com",
-	messagingSenderId: "305877571877",
-	appId: "1:305877571877:web:62d5f411c79b042822e2cc",
-	measurementId: "G-HHPQ5Q5VDF"
+	apiKey: "AIzaSyCgkoDQ8s-X3Gz4KBnV07ECsffdHACrsms",
+	authDomain: "the-pantry-cabinet.firebaseapp.com",
+	projectId: "the-pantry-cabinet",
+	storageBucket: "the-pantry-cabinet.appspot.com",
+	messagingSenderId: "553638031789",
+	appId: "1:553638031789:web:e0a1f9287c9355d137b124",
+	measurementId: "G-VHGE183YGW"
 };
 
 // Initialize Firebase
