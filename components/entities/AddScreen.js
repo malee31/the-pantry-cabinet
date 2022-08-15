@@ -150,7 +150,7 @@ export default function AddScreen(props) {
 						<button
 							type="submit"
 							className="flex-shrink-0 mt-4 px-3 py-1.5 border rounded-md disabled:bg-gray-100 disabled:cursor-not-allowed"
-							disabled={!newItem.name || !newItem.description}
+							disabled={!newItem.name || !newItem.description || imageStatus.includes("Uploading")}
 						>
 							Add
 						</button>

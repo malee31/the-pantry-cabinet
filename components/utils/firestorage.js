@@ -1,5 +1,5 @@
 import { storage } from "./firebaseInit";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable, listAll } from "firebase/storage";
 
 export function uploadImage(path, file, { onProgress, onComplete, onError }) {
 	const imageRef = ref(storage, path);
@@ -20,4 +20,9 @@ export function uploadImage(path, file, { onProgress, onComplete, onError }) {
 			}
 		}
 	);
+}
+
+export function listImages(pantryId) {
+	const listRef = ref(storage, `/pantry/${pantryId}/images`);
+	return listAll(listRef).then(res => [...res.items]);
 }
