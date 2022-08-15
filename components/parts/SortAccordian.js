@@ -1,14 +1,18 @@
+import useItemContext from "./ItemContext/useItemContext";
 import SidebarAccordian from "../units/SidebarAccordian";
 import SidebarAccordianItem from "./SidebarAccordianItem";
 import { SortAscendingIcon } from "@heroicons/react/solid";
 
 export default function SortAccordian() {
+	const ItemContext = useItemContext();
+	const onChange = e => ItemContext.sortBy(e.target.value);
+
 	return (
 		<SidebarAccordian label="Sort" Icon={SortAscendingIcon}>
-			<SidebarAccordianItem id="sort-name" label="Name" type="checkbox"/>
-			<SidebarAccordianItem id="sort-type" label="Type" type="checkbox"/>
-			<SidebarAccordianItem id="sort-category" label="Category" type="checkbox"/>
-			<SidebarAccordianItem id="sort-count" label="Count" type="checkbox"/>
+			<SidebarAccordianItem name="sort" onChange={onChange} className="h-1/2" id="sort-name" value="name" label="Name" type="radio"/>
+			<SidebarAccordianItem name="sort" onChange={onChange} className="h-1/2" id="sort-type" value="type" label="Type" type="radio" disabled={true}/>
+			<SidebarAccordianItem name="sort" onChange={onChange} className="h-1/2" id="sort-description" value="description" label="Description" type="radio"/>
+			<SidebarAccordianItem name="sort" onChange={onChange} className="h-1/2" id="sort-count" value="count" label="Count" type="radio"/>
 		</SidebarAccordian>
 	);
 }

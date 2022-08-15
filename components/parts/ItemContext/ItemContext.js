@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 /**
  * @typedef {Object} ItemContextValue
@@ -7,6 +7,8 @@ import { createContext } from "react";
  * @property {boolean} [loaded = true] Set to true once items have been loaded from storage
  * @property {function} setLoaded Sets the loaded property. Call once loaded or unloaded
  * @property {Array<Items>|null} items Array of all the items in the context
+ * @property {string} [sort = ""] Key to sort by. Leave an empty string for no sort
+ * @property {function} sortBy Sets the item key to sort results by
  * @property {function} setItems Completely replaces the items property with a new value
  * @property {function} findItem Locates an item by id. Returns null if not found
  * @property {function} appendItem Appends an Item instance to the end of the items array. Depends on setItems by default
@@ -25,6 +27,8 @@ import { createContext } from "react";
  */
 export function defaultItemContext(overrides = {}) {
 	const items = overrides.items || [];
+	const sort = overrides.sort || "";
+	const sortBy = overrides.sortBy || (() => {});
 	const setItems = overrides.setItems || (() => {});
 	const findItem = overrides.findItem || ((id) => items.find(item => item.id === id) || null);
 	const appendItem = overrides.appendItem || ((item) => setItems([...items, item]));
@@ -34,6 +38,8 @@ export function defaultItemContext(overrides = {}) {
 		loaded: typeof overrides.loaded === "boolean" ? overrides.loaded : true,
 		setLoaded: overrides.setLoaded || (() => {}),
 		items,
+		sort,
+		sortBy,
 		setItems,
 		findItem,
 		appendItem

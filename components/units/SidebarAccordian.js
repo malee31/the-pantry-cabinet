@@ -12,7 +12,7 @@ export default function SidebarAccordian({ label, Icon, children }) {
 			</span>
 			<div
 				style={{ gridTemplateColumns: "min-content 1fr" }}
-				className={`ml-[0.5em] border-l-2 border-gray-300 text-base grid ${collapsed ? "h-0 overflow-hidden" : ""}`}
+				className={`ml-[0.5em] border-l-2 border-gray-300 text-base grid items-center ${collapsed ? "h-0 overflow-hidden" : ""}`}
 			>
 				{children}
 			</div>

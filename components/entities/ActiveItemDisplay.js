@@ -8,28 +8,29 @@ export default function ActiveItemDisplay(props) {
 	useEffect(() => {
 		if(ItemContext.id === null) return;
 
-		const unsub = listenItems(ItemContext.id, items => {
-			if(!items.empty) {
-				const results = items.docs.map(item => {
-					const data = item.data();
-					return {
-						id: item.id,
-						label: data.name,
-						caption: data.description,
-						imageSrc: data.image,
-						defaultAmount: data.count
-					};
-				});
+		const unsub = listenItems(ItemContext.id, ItemContext.sort,
+			items => {
+				if(!items.empty) {
+					const results = items.docs.map(item => {
+						const data = item.data();
+						return {
+							id: item.id,
+							label: data.name,
+							caption: data.description,
+							imageSrc: data.image,
+							defaultAmount: data.count
+						};
+					});
 
-				ItemContext.setItems(results);
-			}
-			ItemContext.setLoaded(true);
-		});
+					ItemContext.setItems(results);
+				}
+				ItemContext.setLoaded(true);
+			});
 
 		return () => {
 			unsub.then(cb => {cb()});
 		};
-	}, [ItemContext.id]);
+	}, [ItemContext.id, ItemContext.sort]);
 
 	return (
 		<ItemDisplay
