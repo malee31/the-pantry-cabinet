@@ -6,7 +6,7 @@ import ItemDisplay from "./ItemDisplay";
 export default function ActiveItemDisplay(props) {
 	const ItemContext = useItemContext();
 	useEffect(() => {
-		if(ItemContext.id === null) return;
+		if(!ItemContext.id) return;
 
 		const unsub = listenItems(ItemContext.id, ItemContext.sort, ItemContext.filters,
 			items => {

@@ -22,6 +22,7 @@ export default function AddScreen(props) {
 	const { show, onHide } = props;
 	const { loggedIn } = useAuth();
 	const ItemContext = useItemContext();
+	const [imageList, setImageList] = useState([]);
 	const [newItem, setNewItem] = useState({
 		...newItemTemplate
 	});
@@ -46,8 +47,18 @@ export default function AddScreen(props) {
 		setImageError("");
 	}, [show]);
 
+	useEffect(() => {
+		if(!ItemContext.id) return;
+		console.log("Regenerated Image List");
+		setImageList(
+			ItemContext.items
+				.map(item => item.imageSrc)
+				.filter((src, index, arr) => arr.indexOf(src) === index)
+		);
+	}, [ItemContext.id, ItemContext.items]);
+
 	const handleAddItem = () => {
-		if(ItemContext.id === null) return;
+		if(!ItemContext.id) return;
 
 		const newItemFinal = {
 			...newItem,

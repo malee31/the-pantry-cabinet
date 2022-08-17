@@ -22,7 +22,7 @@ export function uploadImage(path, file, { onProgress, onComplete, onError }) {
 	);
 }
 
-export function listImages(pantryId) {
-	const listRef = ref(storage, `/pantry/${pantryId}/images`);
-	return listAll(listRef).then(res => [...res.items]);
-}
+// export function listImages(pantryId) {
+// 	const listRef = ref(storage, `/pantry/${pantryId}/images`);
+// 	return listAll(listRef).then(res => [...res.items]);
+// }
