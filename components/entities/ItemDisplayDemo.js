@@ -23,7 +23,7 @@ export default function ItemDisplayDemo(props) {
 	return (
 		<ItemDisplay
 			loadingLabel={loadingLabel}
-			noItemsLabel={"No Items Available. Click to Show Demo"}
+			noItemsLabel="No Items Available. Click to Show Demo"
 			noItemsClick={() => setShowSampleItems(true)}
 			{...props}
 		/>

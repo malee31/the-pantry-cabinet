@@ -34,8 +34,8 @@ export default function ActiveItemDisplay(props) {
 
 	return (
 		<ItemDisplay
-			loadingLabel={"Loading Items..."}
-			noItemsLabel={"No Items Available"}
+			loadingLabel="Loading Items..."
+			noItemsLabel="No Items Available"
 			{...props}
 		/>
 	);
