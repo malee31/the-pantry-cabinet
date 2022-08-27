@@ -55,6 +55,7 @@ export default function ItemListItem(props) {
 				className="line-clamp-2 leading-5 px-2 py-0.5 border-x-2 border-neutral-100 overscroll-contain"
 				onClick={() => setExpand(!expand)}
 				style={expand ? { overflowY: "auto" } : {}}
+				title={expand ? "" : "Click to expand description"}
 			>
 				{caption}
 			</span>

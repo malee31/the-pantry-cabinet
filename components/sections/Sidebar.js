@@ -11,7 +11,7 @@ export default function Sidebar(props) {
 
 	return (
 		<aside
-			className={classNameMerge("w-fit h-full px-4 py-2 border border-gray-400 bg-white overflow-auto", className)}
+			className={classNameMerge("w-fit h-full px-4 py-2 border-r border-gray-400 bg-white overflow-auto", className)}
 			{...args}
 		>
 			<Searchbar/>

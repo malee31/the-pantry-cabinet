@@ -30,12 +30,14 @@ export default function ItemCounter(props) {
 	const onInput = e => {
 		const input = e.currentTarget.value;
 		const offset = input.includes("+") ? 1 : (input.includes("-") ? -1 : 0);
+		console.log(offset)
 		const filteredInput = input.replace(/[^0-9]/g, "");
-		if(offset && filteredInput) {
-			setInputVal(Math.max(Number(filteredInput) + offset, 0).toString());
-		} else {
-			setInputVal(filteredInput);
+		if(offset) {
+			// Increment or decrement as needed
+			setInputVal(Math.max((Number(filteredInput) || 0) + offset, 0).toString());
+			return;
 		}
+		setInputVal(filteredInput);
 	};
 
 	const onBlur = () => {
@@ -55,7 +57,7 @@ export default function ItemCounter(props) {
 			<input
 				className="w-9 h-full px-1 border border-transparent hover:border-gray-300 transition-[border-color] rounded-sm flex-grow-0 text-center"
 				type="text"
-				title="Press + or - to change by 1"
+				title="Tip: Press + or - to change by 1"
 				value={typeof inputVal === "string" ? inputVal : count}
 				onInput={onInput}
 				onBlur={onBlur}

@@ -29,11 +29,17 @@ export default function ItemCard(props) {
 						src={imageSrc}
 						alt={label}
 						layout="fill"
+						sizes="
+							(max-width: 518px) 100vw,
+							(max-width: 769px) 50vw,
+							(max-width: 1034px) 35vw,
+							(max-width: 1286px) 25vw,
+						20vw"
 					/>
 				</div>
 			</div>
 			<div className="min-h-0 my-1 px-2 flex flex-col overflow-hidden transition-[height]">
-				<div className="h-fit pb-0.5 group-hover:pb-0 border-b border-gray-300 text-xl leading-6 align-middle">
+				<div className="h-fit pb-0.5 group-hover:pb-0 border-b border-gray-300 text-lg leading-6 align-middle">
 					<span className="h-full ml-2 float-right text-base leading-4">
 						<ItemCounter defaultAmount={defaultAmount}/>
 					</span>
@@ -49,6 +55,7 @@ export default function ItemCard(props) {
 				<p
 					style={{ minHeight: "4rem" }}
 					className={`whitespace-pre-line flex-1 -m-2 mt-0 p-2 pt-0 min-h-0 overflow-hidden ${expand ? "overscroll-contain overflow-y-auto" : ""}`}
+					title={expand ? "" : "Click to expand description"}
 					onClick={() => {setExpand(!expand)}}
 				>
 					{caption}

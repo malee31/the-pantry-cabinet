@@ -1,24 +1,21 @@
-import { SearchIcon } from "@heroicons/react/solid";
-
-export default function Searchbar() {
-	const onClick = () => {};
+export default function Searchbar(props) {
+	const {
+		onValue,
+		...args
+	} = props;
 
 	return (
 		<div
 			className="w-full h-10 mx-auto border border-gray-400 flex flex-row justify-center items-center rounded-full select-none overflow-hidden"
+			{...args}
 		>
 			<input
-				className="w-full pl-4 pr-2 py-1 rounded-l-full outline-0"
+				className="w-full px-4 py-1 rounded-l-full outline-0"
 				type="text"
+				role="search"
 				placeholder="Search"
+				onChange={e => onValue && onValue(e.currentTarget.value)}
 			/>
-			<button
-				className="h-full p-2 text-2xl bg-blue-400 rounded-full"
-				onClick={onClick}
-				aria-label="Search"
-			>
-				<SearchIcon className="h-full text-blue-200"/>
-			</button>
 		</div>
 	);
 }

@@ -13,7 +13,6 @@ export default function SortAccordian() {
 	return (
 		<SidebarAccordian label="Sort" Icon={SortAscendingIcon}>
 			<SidebarAccordianItem name="sort" onChange={onChange} className="h-1/2" id="sort-name" value="name" label="Name" type="radio"/>
-			<SidebarAccordianItem name="sort" onChange={onChange} className="h-1/2" id="sort-type" value="type" label="Type" type="radio" disabled={true}/>
 			<SidebarAccordianItem name="sort" onChange={onChange} className="h-1/2" id="sort-description" value="description" label="Description" type="radio"/>
 			<SidebarAccordianItem name="sort" onChange={onChange} className="h-1/2" id="sort-count" value="count" label="Count" type="radio"/>
 		</SidebarAccordian>

@@ -49,11 +49,9 @@ export default function FilterAccordian() {
 	return (
 		<SidebarAccordian label="Filter" Icon={FilterIcon}>
 			<SidebarAccordianItem id="filter-owner" label="Owner" disabled={true}/>
-			<SidebarAccordianItem id="filter-type" label="Type" disabled={true}/>
 			<SidebarAccordianItem id="filter-categories" label="Categories" disabled={true}/>
 			<SidebarAccordianItem id="filter-less-than" label="Less than" onBlur={onLessThan} disabled={ItemContext.sort !== "count"}/>
 			<SidebarAccordianItem id="filter-more-than" label="More than" onBlur={onMoreThan} disabled={ItemContext.sort !== "count"}/>
-			<SidebarAccordianItem id="filter-edible" label="Edible" type="checkbox" disabled={true}/>
 		</SidebarAccordian>
 	);
 }
