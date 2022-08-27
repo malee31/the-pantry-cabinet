@@ -9,6 +9,7 @@ export default {
 		defaultAmount: {
 			control: "number",
 			defaultValue: 0
-		}
+		},
+		hideLabel: { control: "boolean" }
 	}
 };

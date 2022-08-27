@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { classNameMerge } from "../../utils";
-import { MinusSmIcon, PlusSmIcon } from "@heroicons/react/solid";
 
 /**
  * The counter for the number of an item there is with controls to add or subtract
@@ -13,6 +12,7 @@ export default function ItemCounter(props) {
 		defaultAmount = 0,
 		className,
 		style = {},
+		hideLabel = false,
 		...args
 	} = props;
 	const [count, setCount] = useState(defaultAmount);
@@ -29,8 +29,13 @@ export default function ItemCounter(props) {
 
 	const onInput = e => {
 		const input = e.currentTarget.value;
+		const offset = input.includes("+") ? 1 : (input.includes("-") ? -1 : 0);
 		const filteredInput = input.replace(/[^0-9]/g, "");
-		setInputVal(filteredInput);
+		if(offset && filteredInput) {
+			setInputVal(Math.max(Number(filteredInput) + offset, 0).toString());
+		} else {
+			setInputVal(filteredInput);
+		}
 	};
 
 	const onBlur = () => {
@@ -41,28 +46,20 @@ export default function ItemCounter(props) {
 	};
 
 	return (
-		<div
-			style={Object.assign({ height: "1.2em" }, style)}
-			className={classNameMerge("inline-flex row items-center text-center", className)}
+		<label
+			style={Object.assign({ height: "1.3em" }, style)}
+			className={classNameMerge("h-full inline-flex row items-center text-center", className)}
 			{...args}
 		>
-			<MinusSmIcon
-				className="h-full flex-grow-0 aspect-square shrink-0 rounded-full bg-blue-400 cursor-pointer select-none"
-				role="button"
-				onClick={() => count > 0 && setCount(count - 1)}
-			/>
+			{!hideLabel && (<span>Quantity:</span>)}
 			<input
-				className="w-9 h-full px-1 flex-grow-0 text-center"
+				className="w-9 h-full px-1 border border-transparent hover:border-gray-300 transition-[border-color] rounded-sm flex-grow-0 text-center"
 				type="text"
+				title="Press + or - to change by 1"
 				value={typeof inputVal === "string" ? inputVal : count}
 				onInput={onInput}
 				onBlur={onBlur}
 			/>
-			<PlusSmIcon
-				className="h-full flex-grow-0 aspect-square shrink-0 rounded-full bg-blue-400 cursor-pointer select-none"
-				role="button"
-				onClick={() => setCount(count + 1)}
-			/>
-		</div>
+		</label>
 	);
 }

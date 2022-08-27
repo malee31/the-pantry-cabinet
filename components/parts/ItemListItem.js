@@ -16,7 +16,7 @@ export function ItemListHeader() {
 				Caption
 			</span>
 			<span className="relative">
-				<ItemCounter className="px-2 justify-self-center invisible"/>
+				<ItemCounter className="px-4 justify-self-center invisible" hideLabel={true} aria-hidden={true}/>
 				<span className="absolute top-0 left-0 w-full text-center">
 					Amount
 				</span>
@@ -59,8 +59,9 @@ export default function ItemListItem(props) {
 				{caption}
 			</span>
 			<ItemCounter
-				className="px-2 justify-self-center"
+				className="px-4 justify-self-center"
 				defaultAmount={defaultAmount}
+				hideLabel={true}
 			/>
 		</div>
 	);

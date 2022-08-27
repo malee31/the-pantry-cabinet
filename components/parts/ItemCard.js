@@ -34,13 +34,13 @@ export default function ItemCard(props) {
 			</div>
 			<div className="min-h-0 my-1 px-2 flex flex-col overflow-hidden transition-[height]">
 				<div className="h-fit pb-0.5 group-hover:pb-0 border-b border-gray-300 text-xl leading-6 align-middle">
-					<span className="ml-2 float-right text-base leading-4">
+					<span className="h-full ml-2 float-right text-base leading-4">
 						<ItemCounter defaultAmount={defaultAmount}/>
 					</span>
 					<span
 						title={label}
 						style={{ hyphens: "auto" }}
-						className="line-clamp-2 transition-[font-size,line-height,padding] group-hover:text-base group-hover:leading-4 group-hover:py-0.5"
+						className="line-clamp-2 transition-[font-size,line-height,padding] group-hover:text-base group-hover:leading-4 group-hover:py-1"
 						onClick={() => {setExpand(!expand)}}
 					>
 						{label}

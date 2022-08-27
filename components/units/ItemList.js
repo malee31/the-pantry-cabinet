@@ -10,11 +10,13 @@ export default function ItemList(props) {
 
 	return (
 		<div
-			className={classNameMerge("w-full h-full flex flex-col justify-items-start items-stretch overflow-auto", className)}
+			className={classNameMerge("w-full h-0 flex-grow flex flex-col justify-items-start items-stretch", className)}
 			{...additionalProps}
 		>
 			<ItemListHeader/>
-			{items && items.map(item => <ItemListItem key={item.id} {...item}/>)}
+			<div className="h-5/6 flex-grow overflow-auto">
+				{items && items.map(item => <ItemListItem key={item.id} {...item}/>)}
+			</div>
 		</div>
 	);
 }
